@@ -1,0 +1,102 @@
+/* Cards.css */
+
+.SchoolListCard {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 31%);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: #fff;
+  text-align: center;
+  display: flex;
+  max-width: 80rem;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.375rem;
+  border: 1px solid #e5e7eb;
+}
+
+.SchoolListCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.SchoolListCard-title-link {
+  color: #333;
+  text-decoration: none;
+}
+
+.SchoolListCard-title-link h2 {
+  margin: 0;
+  font-size: 28px;
+  color: rgb(14 53 104);
+  transition: color 0.2s;
+}
+
+.SchoolListCard-read-more-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 8px 16px;
+  color: #fff;
+  background-color: rgb(14 53 104);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  border-radius: 16px;
+  font-size: 18px;
+}
+
+.SchoolListCard-read-more-link:hover {
+  background-color: rgb(11 46 70);
+}
+
+.SchoolListCard-image img {
+  width: 100%;
+  height: 165px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 45px;
+  border-radius: 8px;
+}
+
+.SchoolListCardContent{
+  font-size: 18px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 48rem;
+}
+
+@media (min-width: 768px) {
+  .SchoolListCard {
+      flex-direction: row;
+  }
+}
+
+.SchoolListCardImage-container {
+  height: 100%;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .SchoolListCardImage-container {
+      height: 200px;
+    width: 435px;
+  }
+}
+
+.SchoolListCard-image {
+  height: 100%;
+  width: 100%;
+  border-radius: 0.375rem;
+  object-cover: cover;
+}
+
+
+
+.SchoolListCardContent{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 22px;
+}

@@ -1,0 +1,60 @@
+.upperHeader {
+  background: #071952;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  overflow: hidden;
+
+}
+
+.upperleftNav {
+  color: #fff;
+  font-size: 60px;
+  font-family: emoji;
+}
+
+.upperrightNav {
+  color: #fff;
+  font-size: 30px
+}
+
+.bottomHeader{
+  background-color: #088395;
+  height: 48px;
+}
+
+.bottomHead ul {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  font-size: 22px;
+  padding-top: 10px;
+}
+
+.bottomHead ul li {
+  list-style: none;
+  font-family: "Secular One", sans-serif;
+}
+
+.bottomHead ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .upperHeader{
+    flex-direction: column;
+  }
+
+  .bottomHeader{
+    height: 130px;
+  }
+
+  .bottomHead ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+  }
+  
+}

@@ -1,0 +1,60 @@
+.QuestionPaperform-container {
+  text-align: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.QuestionPapertest-form {
+  display: inline-block;
+  text-align: left;
+  max-width: 400px;
+  width: 100%;
+}
+
+.QuestionPaperform-title {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.QuestionPaperform-field {
+  margin-bottom: 15px;
+}
+
+.QuestionPaperform-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.QuestionPaperpaper-type-select,
+.QuestionPapersubject-name-input,
+.QuestionPapersubject-code-input,
+.QuestionPaperquestion-paper-upload {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.QuestionPapersubmit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.QuestionPapersubmit-button:hover {
+  background-color: #218838;
+}

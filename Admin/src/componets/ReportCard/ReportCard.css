@@ -1,0 +1,10 @@
+.ReportContainer{
+  display: flex;
+}
+
+@media screen and (max-width: 800px){
+  .ReportContainer{
+    flex-direction: column;
+    align-items: center;
+  }
+}

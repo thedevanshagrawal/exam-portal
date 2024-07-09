@@ -1,0 +1,86 @@
+.ProfileMainContainer{
+  display: flex;
+      gap: 60px;
+}
+
+.profile-container {
+  position: relative; 
+  max-width: 600px;
+  background-color: #fff;
+  margin: 20px auto;
+  padding: 20px 96px;
+  border-radius: 8px;
+  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.profile-FormContainer {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.profile-form label {
+  margin-bottom: 8px;
+}
+
+.profile-form input,
+.profile-form button {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.profile-photo {
+  margin-bottom: 15px;
+}
+
+.profile-photo label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.profile-form button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-form button:hover {
+  background-color: #45a049;
+}
+
+.profile-photo-preview {
+  width: 100px; /* Adjust the width of the preview */
+  height: 100px; /* Adjust the height of the preview */
+  border-radius: 50%; /* Make it circular */
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.forgot-password-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.forgot-password-btn:hover {
+  background-color: #d32f2f;
+}

@@ -1,0 +1,40 @@
+footer {
+  background: #071952;
+  height: 82px;
+  color: white;
+  font-weight: 400;
+    margin-top: auto;
+}
+
+.footer {
+  padding-top: 15px;
+  padding-left: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.footer-img {
+  height: 33px;
+  border-radius: 50%;
+}
+
+.Copyright-footer {
+  margin-left: 15px;
+}
+
+@media screen and (max-width: 800px) {
+
+  footer {
+      height: 132px;
+  }
+
+  .footer {
+      flex-direction: column;
+      gap: 7px;
+  }
+
+  .Copyright-footer {
+      margin-left: 0;
+  }
+
+}
