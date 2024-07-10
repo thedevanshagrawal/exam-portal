@@ -1,1 +1,1 @@
-run:  npm i, npm i react-router-dom
+run:  npm i
