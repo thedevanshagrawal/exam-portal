@@ -24,6 +24,7 @@ function Registration() {
   };
 
   return (
+    <div className="Registration-Main-Container" >
     <div className="Registrationcontainer">
       <div className="Registrationform-container">
         <h2 className="Registrationform-title">Exam Portal Registration</h2>
@@ -47,6 +48,7 @@ function Registration() {
         </form>
       </div>
     </div>
+      </div>
   );
 }
 

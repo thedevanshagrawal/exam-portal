@@ -1,9 +1,12 @@
+Registration-Main-Container{
+  background: aliceblue;
+}
+
 .Registrationcontainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
+  margin: 30px 0;
 }
 
 .Registrationform-container {

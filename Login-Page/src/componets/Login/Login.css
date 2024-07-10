@@ -5,12 +5,15 @@
     font-family: Arial, sans-serif;
 }
 
+.Login-Main-Container{
+    background: aliceblue;
+}
+
 .Logincontainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f0f2f5;
+    margin: 30px 0;
 }
 
 .Loginform-container {

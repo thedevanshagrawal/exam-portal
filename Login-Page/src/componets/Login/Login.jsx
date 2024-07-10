@@ -5,6 +5,7 @@ import "./Login.css";
 
 function Login() {
   return (
+    <div className="Login-Main-Container">
     <div className="Logincontainer">
       <div className="Loginform-container">
         <h2 className="Loginform-title">Exam Portal Login</h2>
@@ -45,13 +46,9 @@ function Login() {
             <option value="student">Student</option>
           </select>
 
-          <div className="Loginform-button LoginBtn">
-            <Link to="/Registration" className="Registerbtn">
-              Register
-            </Link>
-          </div>
-          
-        
+          <Link to="/Registration" className="Registerbtn">
+            <div className="Loginform-button LoginBtn">Register</div>
+          </Link>
 
           <button type="submit" className="Loginform-button">
             Login
@@ -59,6 +56,7 @@ function Login() {
         </form>
       </div>
     </div>
+      </div>
   );
 }
 
