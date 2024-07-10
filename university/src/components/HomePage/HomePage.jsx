@@ -1,8 +1,8 @@
-// src/Content.js
+// src/HomePage.js
 import React from "react";
-import "./Content.css";
+import "./HomePage.css";
 
-const Content = () => {
+const HomePage = () => {
   return (
     <main>
       <section className="topSection">
@@ -28,4 +28,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default HomePage;

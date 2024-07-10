@@ -1,8 +1,7 @@
-// src/Content.js
 import React from "react";
-import "./Content.css";
+import "./HomeContent.css";
 
-const Content = () => {
+const HomeContent = () => {
   return (
     <main>
       <section className="topSection">
@@ -14,7 +13,7 @@ const Content = () => {
         </div>
 
         <div className="rightSection">
-          <h1>Welcome to Your Ultimate Exam Portal !</h1>
+          <h1>Welcome to Your Ultimate Exam Portal!</h1>
           <p>
             Start your journey to success with our comprehensive exam platform!
             Streamline your exam preparations with our easy-to-use dashboard,
@@ -24,8 +23,16 @@ const Content = () => {
           </p>
         </div>
       </section>
+
+      <section className="notificationSection">
+        <h2>Notification</h2>
+        <p>
+          Important update: Please note that the exam schedules have been
+          revised. Make sure to check the updated schedules in your dashboard.
+        </p>
+      </section>
     </main>
   );
 };
 
-export default Content;
+export default HomeContent;

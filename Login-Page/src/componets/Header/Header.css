@@ -19,6 +19,17 @@
   font-size: 20px
 }
 
+.upperrightNav ul{
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.upperrightNav ul li a{
+  text-decoration: none;
+  color: #fff;
+}
+
 .LoginbottomHeader{
   background-color: #088395;
   height: 48px;

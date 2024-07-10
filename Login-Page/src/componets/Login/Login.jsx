@@ -46,8 +46,8 @@ function Login() {
             <option value="student">Student</option>
           </select>
 
-          <Link to="/Registration" className="Registerbtn">
-            <div className="Loginform-button LoginBtn">Register</div>
+          <Link to="/Forgotpassword" className="Registerbtn">
+            <div className="Loginform-button LoginBtn">Forgot Password</div>
           </Link>
 
           <button type="submit" className="Loginform-button">

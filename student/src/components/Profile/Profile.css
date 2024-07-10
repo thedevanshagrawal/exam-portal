@@ -1,86 +1,153 @@
-.ProfileMainContainer{
-  display: flex;
-      gap: 60px;
+.Profile-Full-Container {
+  width: 100%;
+  /* background-color: #F0F8FF; */
+  background: #4cabff40;
 }
 
 .profile-container {
-  position: relative; 
-  max-width: 600px;
-  background-color: #fff;
-  margin: 20px auto;
-  padding: 20px 96px;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  /* background: #4cabff40; */
+   background-color: #F0F8FF;
   
+  padding: 20px 48px 20px 20px;
+  border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 62rem; /* Default width */
+  max-width: 100%;
+  margin: 36px auto;
 }
 
 .profile-container h2 {
   text-align: center;
-  margin-bottom: 20px;
 }
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ProfileMainContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10rem;
+}
+
 .profile-FormContainer {
   display: flex;
   flex-direction: column;
-  
+  gap: 15px;
+  flex: 2;
 }
 
-.profile-form label {
-  margin-bottom: 8px;
-}
-
-.profile-form input,
-.profile-form button {
+.form-group {
   margin-bottom: 15px;
-  padding: 10px;
-  font-size: 16px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.profile-photo {
-  margin-bottom: 15px;
+.photo-preview {
+  margin-top: 10px;
 }
 
-.profile-photo label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-.profile-form button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.profile-form button:hover {
-  background-color: #45a049;
-}
-
-.profile-photo-preview {
-  width: 100px; /* Adjust the width of the preview */
-  height: 100px; /* Adjust the height of the preview */
-  border-radius: 50%; /* Make it circular */
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.profile-photo-preview img {
-  width: 100%;
-  height: 100%;
+.photo-preview-img {
+  width: 230px;
+  height: 230px;
   object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  
 }
 
+
+.forgot-password-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.forgot-password-container a {
+  text-decoration: none;
+}
+  
 .forgot-password-btn {
-  background-color: #f44336;
-  color: white;
+  width: 20rem;
+  max-width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.forgot-password-btn:hover {
-  background-color: #d32f2f;
+/* Media queries */
+
+/* For tablets and small desktops */
+@media screen and (max-width: 1024px) {
+  .profile-container {
+    width: 36rem;
+    padding: 20px 38px 20px 20px;
+  }
+
+  .ProfileMainContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-photo-container {
+    margin-top: 20px;
+  }
+}
+
+/* For large mobile phones and tablets */
+@media screen and (max-width: 768px) {
+  .profile-container {
+    width: 28rem;
+    padding: 20px 35px 20px 20px;
+    margin: 20px auto;
+  }
+
+  .ProfileMainContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-photo-container {
+    margin-top: 20px;
+  }
+}
+
+/* For mobile phones */
+@media screen and (max-width: 480px) {
+  .profile-container {
+    width: 20rem;
+    padding: 10px 38px 10px 10px;
+    margin: 10px auto;
+  }
+
+  .profile-container h2 {
+    font-size: 24px;
+  }
+
+  .ProfileMainContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-photo-container {
+    margin-top: 20px;
+  }
 }

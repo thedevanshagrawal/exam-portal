@@ -29,7 +29,7 @@ function Registration() {
       <div className="Registrationform-container">
         <h2 className="Registrationform-title">Exam Portal Registration</h2>
         <form id="registration-form" onSubmit={handleSubmit}>
-          <label htmlFor="reg-name" className="Registrationform-label">Name</label>
+          <label htmlFor="reg-name" className="Registrationform-label">Username</label>
           <input type="text" id="reg-name" name="name" className="Registrationform-input" required />
 
           <label htmlFor="reg-contact" className="Registrationform-label">Contact Number</label>

@@ -6,9 +6,23 @@ function Header() {
     <>
     <header className="upperHeader">
       <div className="upperleftNav"> Exam Portal</div>
+      <div className="upperrightNav">
+        <ul>
+          <li>
+               <a href="/">Home</a>
+            </li>
+           <li>
+               <a href="/Login">Login</a>
+            </li>
+           <li>
+               <a href="/Registration">Registration</a>
+            </li>
+
+         </ul>
+      </div>
       
     </header>
-    <header className="LoginbottomHeader" >
+    {/* <header className="LoginbottomHeader" >
       <div className="bottomHead">
         <ul>
           <li>
@@ -20,7 +34,7 @@ function Header() {
          
          </ul>
       </div>
-    </header>
+    </header> */}
       </>
 
 

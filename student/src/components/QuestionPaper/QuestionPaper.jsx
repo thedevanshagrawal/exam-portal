@@ -46,8 +46,6 @@ const subjects = {
   ],
 };
 
-const adminNotification =
-  "Exams for the intermediate level will be rescheduled due to unforeseen circumstances.";
 
 function QuestionPaper() {
   const [level, setLevel] = useState("beginner");
@@ -62,11 +60,10 @@ function QuestionPaper() {
   };
 
   return (
+    <div className="Exam-Main-Container" >
     <div className="exam-container">
       <h1 className="exam-title">Select Exam Level</h1>
-      <div className="admin-notification">
-        <p>{adminNotification}</p>
-      </div>
+     
       <div className="level-selector">
         <button className="level-button" onClick={() => setLevel("beginner")}>
           Beginner
@@ -109,6 +106,7 @@ function QuestionPaper() {
         </div>
       )}
     </div>
+      </div>
   );
 }
 
