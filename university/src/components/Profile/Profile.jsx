@@ -21,7 +21,7 @@ const Profile = () => {
   return (
     <div className="Profile-Full-Container">
       <div className="profile-container">
-        <h2>Student Profile</h2>
+        <h2>Profile</h2>
         <form className="profile-form">
           <div className="ProfileMainContainer">
             <div className="profile-FormContainer">
