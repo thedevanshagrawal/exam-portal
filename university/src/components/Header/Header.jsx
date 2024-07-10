@@ -32,6 +32,9 @@ function Header() {
             <li>
               <a href="/Report">Report</a>
             </li>
+            <li>
+              <a href="/Profile">Profile</a>
+            </li>
          </ul>
       </div>
     </header>

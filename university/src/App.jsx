@@ -13,6 +13,7 @@ import ScheduleExam from './components/ScheduleExam/ScheduleExam';
 
 import StudentReport from './components/StudentReport/StudentReport';
 import HomePage from './components/HomePage/HomePage';
+import Profile from './components/Profile/Profile';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               <Route path="//StudentDetails" element={<StudentDetails />} />
               <Route path="//ScheduleExam" element={<ScheduleExam />} />
               <Route path="/Report" element={<StudentReport />} />
+              <Route path="/Profile" element={<Profile />} />
            </Routes>
            </Router>
          <Footer/>
