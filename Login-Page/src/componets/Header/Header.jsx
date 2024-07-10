@@ -17,16 +17,7 @@ function Header() {
            <li>
                <a href="/Login">Login</a>
             </li>
-          {/*
-            <li>
-              <a href="/SchoolList">School List</a>
-            </li>
-            <li>
-              <a href="/PreviousYearQnA">Previous Year QnA</a>
-            </li>
-          <li>
-            <a href="/Reports">Reports</a>
-          </li> */}
+         
          </ul>
       </div>
     </header>
