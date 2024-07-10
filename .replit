@@ -1,0 +1,12 @@
+modules = ["nodejs-20", "web", "cpp-clang14", "nodejs-19", "nodejs-18", "nodejs-16"]
+run = "npm i"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "npm i"]
+
+[[ports]]
+localPort = 5173
+externalPort = 80
