@@ -21,7 +21,7 @@ function Header() {
             <a href="/QuestionPaper">Question Paper</a>
           </li>
           <li>
-            <a href="/Report">Report</a>
+            <a href="/Report">Report card</a>
           </li>
           <li>
             <a href="/Profile">Profile</a>

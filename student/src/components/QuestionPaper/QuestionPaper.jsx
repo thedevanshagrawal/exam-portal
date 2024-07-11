@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./QuestionPaper.css";
 
-const subjects = {
-  beginner: [
+const subjects = [
     {
       name: "Math 101",
       time: "9:00 AM",
@@ -15,8 +14,7 @@ const subjects = {
       code: "S101",
       samplePaper: "sample-science101.pdf",
     },
-  ],
-  intermediate: [
+
     {
       name: "Math 201",
       time: "9:00 AM",
@@ -29,8 +27,7 @@ const subjects = {
       code: "S201",
       samplePaper: "sample-science201.pdf",
     },
-  ],
-  advanced: [
+ 
     {
       name: "Math 301",
       time: "9:00 AM",
@@ -43,8 +40,7 @@ const subjects = {
       code: "S301",
       samplePaper: "sample-science301.pdf",
     },
-  ],
-};
+  ]
 
 
 function QuestionPaper() {
@@ -62,24 +58,9 @@ function QuestionPaper() {
   return (
     <div className="Exam-Main-Container" >
     <div className="exam-container">
-      <h1 className="exam-title">Select Exam Level</h1>
      
-      <div className="level-selector">
-        <button className="level-button" onClick={() => setLevel("beginner")}>
-          Beginner
-        </button>
-        <button
-          className="level-button"
-          onClick={() => setLevel("intermediate")}
-        >
-          Intermediate
-        </button>
-        <button className="level-button" onClick={() => setLevel("advanced")}>
-          Advanced
-        </button>
-      </div>
       <div className="subject-list">
-        {subjects[level].map((subject, index) => (
+        {subjects.map((subject, index) => (
           <div
             key={index}
             className="subject-card"

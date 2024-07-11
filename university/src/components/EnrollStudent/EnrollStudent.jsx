@@ -126,7 +126,7 @@ function EnrollStudent() {
 
           <div className="form-group">
             <label htmlFor="parentsName" className="form-label">
-              Father/Mother/Guardian Name:
+              Father's Name:
             </label>
             <input
               type="text"
@@ -138,17 +138,19 @@ function EnrollStudent() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="parentContact" className="form-label">
-              Father/Mother/Guardian contact:
+            <label htmlFor="parentsName" className="form-label">
+              Mother's Name:
             </label>
             <input
-              type="number"
-              id="parentContact"
-              name="parentContact"
+              type="text"
+              id="parentsName"
+              name="parentsName"
               className="form-input"
               required
             />
           </div>
+
+         
 
           <div className="form-group">
             <label htmlFor="profilePhoto" className="form-label">

@@ -1,78 +1,58 @@
 import React, { useState } from 'react';
+import MCQsection from './MCQsection';
+import QuestionPaperCard from './QuestionPaperCard';
 import './QuestionPaper.css';
 
-function QuestionPaper() {
-  const [formData, setFormData] = useState({
-    paperType: '',
-    subjectName: '',
-    subjectCode: '',
-    questionPaper: null,
-  });
+const QuestionPaper = () => {
+    const [questions, setQuestions] = useState([]);
+    const [editingQuestion, setEditingQuestion] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormData({
-      ...formData,
-      [name]: files ? files[0] : value
-    });
-  };
+    const handleAddQuestion = (question) => {
+        if (editingQuestion !== null) {
+            const updatedQuestions = questions.map((q, index) =>
+                index === editingQuestion ? question : q
+            );
+            setQuestions(updatedQuestions);
+        } else {
+            setQuestions([...questions, question]);
+        }
+        setEditingQuestion(null);
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
+    const handleEditQuestion = (index) => {
+        setEditingQuestion(index);
+    };
 
-  return (
-    <div className="QuestionPaperform-container">
-      <h1 className="QuestionPaperform-title">Test Form</h1>
-      <form className="QuestionPapertest-form" onSubmit={handleSubmit}>
-        <div className="QuestionPaperform-field">
-          <label className="QuestionPaperform-label">Paper Type:</label>
-          <select 
-            className="QuestionPaperpaper-type-select" 
-            name="paperType" 
-            value={formData.paperType} 
-            onChange={handleChange}
-          >
-            <option value="">Select</option>
-            <option value="basic">Basic</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advance">Advance</option>
-          </select>
+    const handleDeleteQuestion = (index) => {
+        const updatedQuestions = questions.filter((_, i) => i !== index);
+        setQuestions(updatedQuestions);
+    };
+
+    return (
+        <div className="app-container">
+            <div className="question-form-container">
+                <MCQsection
+                    onAddQuestion={handleAddQuestion}
+                    editingQuestion={editingQuestion !== null ? questions[editingQuestion] : null}
+                />
+            </div>
+            
+        <div className="question-list-container">
+            <div className='create-btn-div'>
+            <button onClick={() => setEditingQuestion(null)} className="create-question-button">
+                Create Question
+            </button>
+            </div>
+            <QuestionPaperCard
+                questions={questions}
+                onEdit={handleEditQuestion}
+                onDelete={handleDeleteQuestion}
+            />
+        
         </div>
-        <div className="QuestionPaperform-field">
-          <label className="QuestionPaperform-label">Subject Name:</label>
-          <input 
-            type="text" 
-            className="QuestionPapersubject-name-input" 
-            name="subjectName" 
-            value={formData.subjectName} 
-            onChange={handleChange} 
-          />
-        </div>
-        <div className="QuestionPaperform-field">
-          <label className="QuestionPaperform-label">Subject Code:</label>
-          <input 
-            type="text" 
-            className="QuestionPapersubject-code-input" 
-            name="subjectCode" 
-            value={formData.subjectCode} 
-            onChange={handleChange} 
-          />
-        </div>
-        <div className="QuestionPaperform-field">
-          <label className="QuestionPaperform-label">Upload Question Paper:</label>
-          <input 
-            type="file" 
-            className="QuestionPaperquestion-paper-upload" 
-            name="questionPaper" 
-            onChange={handleChange} 
-          />
-        </div>
-        <button type="submit" className="QuestionPapersubmit-button">Submit</button>
-      </form>
-    </div>
-  );
-}
+            </div>
+
+    );
+};
 
 export default QuestionPaper;
