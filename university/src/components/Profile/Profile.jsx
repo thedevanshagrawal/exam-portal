@@ -53,33 +53,6 @@ const Profile = () => {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="DOB" className="form-label">
-                  DOB:
-                </label>
-                <input
-                  type="date"
-                  id="DOB"
-                  name="DOB"
-                  className="form-input"
-                  value={staticProfile.DOB}
-                  readOnly
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="gender" className="form-label">
-                  Gender:
-                </label>
-                <input
-                  type="text"
-                  id="gender"
-                  name="gender"
-                  className="form-input"
-                  value={staticProfile.gender}
-                  readOnly
-                />
-              </div>
 
               <div className="form-group">
                 <label htmlFor="email" className="form-label">
@@ -109,65 +82,15 @@ const Profile = () => {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="address" className="form-label">
-                  Address:
-                </label>
-                <input
-                  type="text"
-                  id="address"
-                  name="address"
-                  className="form-input"
-                  value={staticProfile.address}
-                  readOnly
-                />
-              </div>
 
-              <div className="form-group">
-                <label htmlFor="className" className="form-label">
-                  Class:
-                </label>
-                <input
-                  type="text"
-                  id="className"
-                  name="className"
-                  className="form-input"
-                  value={staticProfile.className}
-                  readOnly
-                />
-              </div>
+              <div className="forgot-logout-btn-container" >
+                <div className="forgot-password-container">
 
-              <div className="form-group">
-                <label htmlFor="parentsName" className="form-label">
-                  Father/Mother/Guardian Name:
-                </label>
-                <input
-                  type="text"
-                  id="parentsName"
-                  name="parentsName"
-                  className="form-input"
-                  value={staticProfile.parentsName}
-                  readOnly
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="parentContact" className="form-label">
-                  Father/Mother/Guardian Contact:
-                </label>
-                <input
-                  type="tel"
-                  id="parentContact"
-                  name="parentContact"
-                  className="form-input"
-                  value={staticProfile.parentContact}
-                  readOnly
-                />
-              </div>
-
-              <div className="forgot-password-container">
-
-                <Link to="/Updatepassword" className="forgot-password-btn" >Forgot Password</Link>
+                  <Link to="/Updatepassword" className="forgot-password-btn" >Forgot Password</Link>
+                </div>
+                <div className="logout-profile-container">
+                  <button className="logout-profile-btn" >logout</button>
+                </div>
               </div>
             </div>
             <div className="form-group profile-photo-container">

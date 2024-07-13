@@ -73,6 +73,11 @@
 }
 
 
+.forgot-logout-btn-container{
+  display: flex;
+  gap: 62px;
+}
+
 .forgot-password-container {
   display: flex;
   justify-content: center;
@@ -83,11 +88,34 @@
   text-decoration: none;
 }
 
+
 .forgot-password-btn {
-  width: 20rem;
+  width: 12rem;
   max-width: 100%;
   padding: 10px;
   background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-profile-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.logout-profile-container a {
+  text-decoration: none;
+}
+
+
+.logout-profile-btn {
+  width: 12rem;
+  max-width: 100%;
+  padding: 10px;
+  background-color: #ff0000;
   color: #fff;
   border: none;
   border-radius: 4px;
