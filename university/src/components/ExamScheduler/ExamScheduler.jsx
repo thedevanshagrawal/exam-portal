@@ -52,11 +52,11 @@ function ExamSchedulingPortal() {
   };
 
   return (
-    <div>
-      <h1>Exam Scheduling Portal</h1>
-      <form>
-        <label>Class:</label>
-        <select value={selectedClass} onChange={handleClassChange}>
+    <div className='ExamScheduling-form-Main-Container' >
+      <h1 className='ExamScheduling-form-h1' >Exam Scheduling Portal</h1>
+      <form className='ExamScheduling-form' >
+        <label class>Class:</label>
+        <select className='ExamScheduling-form-select' value={selectedClass} onChange={handleClassChange}>
           {classes.map((classOption) => (
             <option key={classOption} value={classOption}>
               {classOption}
@@ -64,8 +64,8 @@ function ExamSchedulingPortal() {
           ))}
         </select>
 
-        <label>Subject:</label>
-        <select value={selectedSubject} onChange={handleSubjectChange}>
+        <label class>Subject:</label>
+        <select className='ExamScheduling-form-select' value={selectedSubject} onChange={handleSubjectChange}>
           {subjects.map((subjectOption) => (
             <option key={subjectOption} value={subjectOption}>
               {subjectOption}
@@ -73,12 +73,12 @@ function ExamSchedulingPortal() {
           ))}
         </select>
 
-        <label>Topics:</label>
+        <label class>Topics:</label>
         {topics
           .filter((topic) => topic.subject === selectedSubject)
           .map((topic) => (
             <div key={topic.topics[0]}>
-              <input
+              <input className='ExamScheduling-form-input'
                 type="checkbox"
                 value={topic.topics[0]}
                 checked={selectedTopics.includes(topic.topics[0])}
@@ -88,61 +88,61 @@ function ExamSchedulingPortal() {
             </div>
           ))}
 
-        <div className="form-group">
-          <label>Total Number of Questions:</label>
-          <input
+        <div className="ExamScheduling-form-group">
+          <label class>Total Number of Questions:</label>
+          <input className='ExamScheduling-form-control ExamScheduling-form-input'
             type="number"
             value={totalQuestions}
             onChange={(e) => setTotalQuestions(Number(e.target.value))}
-            className="form-control"
+            
           />
         </div>
-        <div className="form-group">
-          <label>Difficulty Levels:</label>
-          <div className="difficulty-group">
-            <label>Beginner:</label>
-            <input
+        <div className="ExamScheduling-form-group">
+          <label class>Difficulty Levels:</label>
+          <div className="ExamScheduling-difficulty-group">
+            <label class>Beginner:</label>
+            <input className='ExamScheduling-form-control ExamScheduling-form-input'
               type="number"
               value={levels.beginner}
               onChange={(e) => handleLevelChange('beginner', Number(e.target.value))}
-              className="form-control"
+              
             />
           </div>
-          <div className="difficulty-group">
-            <label>Intermediate:</label>
-            <input
+          <div className="ExamScheduling-difficulty-group">
+            <label class>Intermediate:</label>
+            <input className='ExamScheduling-form-control ExamScheduling-form-input'
               type="number"
               value={levels.intermediate}
               onChange={(e) => handleLevelChange('intermediate', Number(e.target.value))}
-              className="form-control"
+              
             />
           </div>
-          <div className="difficulty-group">
-            <label>Advance:</label>
-            <input
+          <div className="ExamScheduling-difficulty-group">
+            <label class>Advance:</label>
+            <input className='ExamScheduling-form-control ExamScheduling-form-input'
               type="number"
               value={levels.advance}
               onChange={(e) => handleLevelChange('advance', Number(e.target.value))}
-              className="form-control"
+              
             />
           </div>
         </div>
 
-        <label>Exam Date:</label>
-        <input
+        <label class>Exam Date:</label>
+        <input className='ExamScheduling-form-input'
           type="date"
           value={examDate}
           onChange={handleExamDateChange}
         />
 
-        <label>Exam Time:</label>
-        <input
+        <label className='ExamScheduling-form-label'>Exam Time:</label>
+        <input className='ExamScheduling-form-input'
           type="time"
           value={examTime}
           onChange={handleExamTimeChange}
         />
 
-        <button type="submit">Schedule Exam</button>
+        <button className='ExamScheduling-form-btn' type="submit">Schedule Exam</button>
       </form>
     </div>
   );

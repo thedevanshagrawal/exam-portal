@@ -1,9 +1,9 @@
-.Report-Full-Container {
+.Student-Report-Full-Container {
   width: 100%;
   background-color: #f4e4ff;
 }
 
-.report-container {
+.Student-report-container {
   display: flex;
   flex-direction: column;
   gap: 26px;
@@ -16,41 +16,41 @@
   margin: 36px auto;
 }
 
-.report-container h2 {
+.Student-report-container h2 {
   text-align: center;
 }
 
-.report-form {
+.Student-report-form {
   display: flex;
   flex-direction: column;
 }
 
-.form-group {
+.Student-form-group {
   margin-bottom: 15px;
 }
 
-.form-label {
+.Student-form-label {
   display: block;
   margin-bottom: 5px;
 }
 
-.form-input {
+.Student-form-input {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-textarea.form-input {
+textarea.Student-form-input {
   resize: vertical;
 }
 
-.form-button-container {
+.Student-form-button-container {
   display: flex;
   justify-content: center;
 }
 
-.form-button {
+.Student-form-button {
   width: 20rem;
   max-width: 100%;
   padding: 10px;
@@ -61,7 +61,7 @@ textarea.form-input {
   cursor: pointer;
 }
 
-.form-button:hover {
+.Student-form-button:hover {
   background-color: #218838;
 }
 
@@ -69,7 +69,7 @@ textarea.form-input {
 
 /* For tablets and small desktops */
 @media screen and (max-width: 1024px) {
-  .report-container {
+  .Student-report-container {
     width: 36rem;
     padding: 20px 38px 20px 20px;
   }
@@ -77,7 +77,7 @@ textarea.form-input {
 
 /* For large mobile phones and tablets */
 @media screen and (max-width: 768px) {
-  .report-container {
+  .Student-report-container {
     width: 28rem;
     padding: 20px 35px 20px 20px;
     margin: 20px auto;
@@ -86,17 +86,17 @@ textarea.form-input {
 
 /* For mobile phones */
 @media screen and (max-width: 480px) {
-  .report-container {
+  .Student-report-container {
     width: 20rem;
     padding: 10px 38px 10px 10px;
     margin: 10px auto;
   }
 
-  .report-container h2 {
+  .Student-report-container h2 {
     font-size: 24px;
   }
 
-  .form-button {
+  .Student-form-button {
     width: 100%;
   }
 }

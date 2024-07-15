@@ -1,9 +1,9 @@
-.FormMainContainer {
+.EnrollStudent-FormMainContainer {
   width: 100%;
   background-color: #f4e4ff;
 }
 
-.form-container {
+.EnrollStudent-form-container {
   display: flex;
   flex-direction: column;
   gap: 26px;
@@ -16,31 +16,31 @@
   margin: 36px auto;
 }
 
-.form-title {
+.EnrollStudent-form-title {
   text-align: center;
 }
 
-.form-group {
+.EnrollStudent-form-group {
   margin-bottom: 15px;
 }
 
-.form-label {
+.EnrollStudent-form-label {
   display: block;
   margin-bottom: 5px;
 }
 
-.form-input {
+.EnrollStudent-form-input {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.photo-preview {
+.EnrollStudent-photo-preview {
   margin-top: 10px;
 }
 
-.photo-preview-img {
+.EnrollStudent-photo-preview-img {
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -48,12 +48,12 @@
   border: 1px solid #ccc;
 }
 
-.form-button-container {
+.EnrollStudent-form-button-container {
   display: flex;
   justify-content: center;
 }
 
-.form-button {
+.EnrollStudent-form-button {
   width: 20rem;
   max-width: 100%;
   padding: 10px;
@@ -64,7 +64,7 @@
   cursor: pointer;
 }
 
-.form-button:hover {
+.EnrollStudent-form-button:hover {
   background-color: #218838;
 }
 
@@ -72,7 +72,7 @@
 
 /* For tablets and small desktops */
 @media screen and (max-width: 1024px) {
-  .form-container {
+  .EnrollStudent-form-container {
     width: 36rem;
     padding: 20px 38px 20px 20px;
   }
@@ -80,7 +80,7 @@
 
 /* For large mobile phones and tablets */
 @media screen and (max-width: 768px) {
-  .form-container {
+  .EnrollStudent-form-container {
     width: 28rem;
     padding: 20px 35px 20px 20px;
     margin: 20px auto;
@@ -89,17 +89,17 @@
 
 /* For mobile phones */
 @media screen and (max-width: 480px) {
-  .form-container {
+  .EnrollStudent-form-container {
     width: 20rem;
     padding: 10px 38px 10px 10px;
     margin: 10px auto;
   }
 
-  .form-title {
+  .EnrollStudent-form-title {
     font-size: 24px;
   }
 
-  .form-button {
+  .EnrollStudent-form-button {
     width: 100%;
   }
 }

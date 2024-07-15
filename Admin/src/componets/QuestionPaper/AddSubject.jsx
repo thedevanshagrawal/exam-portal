@@ -8,6 +8,8 @@ function AddSubject({ setSubjects }) {
     setNewSubject('');
   };
 
+  
+
   return (
     <div className="QuestionPaper-add-subject">
       <input className='QuestionPaper-select-input-option'

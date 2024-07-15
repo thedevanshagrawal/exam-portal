@@ -3,6 +3,7 @@ import './QuestionPaper.css';
 import AddSubject from './AddSubject';
 import DeleteSubject from './DeleteSubject';
 import AddTopic from './AddTopic';
+import DeleteTopic from './DeleteTopic';
 import AddQuestionPaper from './AddQuestionPaper';
 import SubjectList from './SubjectList';
 
@@ -17,8 +18,9 @@ function QuestionPaper() {
         <SubjectList subjects={subjects} topics={topics} />
         <div className="QuestionPaper-actions">
           <AddSubject setSubjects={setSubjects} />
+           <AddTopic subjects={subjects} topics={topics} setTopics={setTopics} />
           <DeleteSubject subjects={subjects} setSubjects={setSubjects} />
-          <AddTopic subjects={subjects} topics={topics} setTopics={setTopics} />
+          <DeleteTopic subjects={subjects} topics={topics} setTopics={setTopics} />
         </div>
       </div>
       <div className="QuestionPaper-question-paper-section">
@@ -29,4 +31,4 @@ function QuestionPaper() {
   );
 }
 
-export default QuestionPaper
+export default QuestionPaper;

@@ -3,10 +3,10 @@ import "./Header.css";
 
 function Header() {
   return (
-    <>
-    <header className="upperHeader">
-      <div className="upperleftNav"> Exam Portal</div>
-      <div className="upperrightNav">
+   /* <>
+    <header className="ExamPage-upperHeader">
+      <div className="ExamPage-upperleftNav"> Exam Portal</div>
+      <div className="ExamPage-upperrightNav">
         <ul>
           <li>
                <a href="/">Home</a>
@@ -14,28 +14,31 @@ function Header() {
            <li>
                <a href="/Login">Login</a>
             </li>
-           {/* <li>
-               <a href="/Registration">Registration</a>
-            </li> */}
+          
 
          </ul>
       </div>
       
-    </header>
-    {/* <header className="LoginbottomHeader" >
-      <div className="bottomHead">
-        <ul>
+    
+      </> */
+
+
+  <>
+    <header className="ExamPage-Headers-navbar">
+        <div className="ExamPage-Headers-logo">
+             Exam Portal
+        </div>
+        <ul className="ExamPage-Headers-nav-links">
           <li>
-               <a href="/">Home</a>
-            </li>
-           <li>
-               <a href="/Login">Login</a>
-            </li>
-         
-         </ul>
-      </div>
-    </header> */}
-      </>
+             <a href="/">Home</a>
+          </li>
+          <li>
+             <a href="/Login">Login</a>
+          </li>
+        </ul>
+       
+    </header>
+  </>
 
 
 

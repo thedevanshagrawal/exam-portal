@@ -1,0 +1,59 @@
+.question-paper-add-question-paper {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.question-paper-add-question-paper-select {
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.question-paper-question-details {
+  margin-top: 10px;
+}
+
+.question-paper-question-details-question-option-answer {
+  padding: 5px;
+  margin: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.question-paper-question-type {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.question-paper-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.question-paper-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #61dafb;
+  color: #282c34;
+  cursor: pointer;
+}
+
+.question-paper-submit-btn {
+  margin-right: 10px;
+  background-color: #05bf00;
+  color: #fff;
+}
+
+.question-paper-view-btn {
+  margin-left: 10px;
+}

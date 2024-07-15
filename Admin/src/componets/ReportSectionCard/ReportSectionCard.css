@@ -1,13 +1,14 @@
 .ReportSectionCard {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 20px;
   margin: 20px;
   box-shadow: 0 4px 8px rgb(0 0 0 / 31%);
   transition: transform 0.2s, box-shadow 0.2s;
   /* background-color: rgba(208, 229, 235, 0.66); */
-  background: #fff;
+  background: rgb(233 199 255 / 66%);
+  font-family: math;
   width: 10rem ;
+  padding: 8px;
 }
 
 .ReportSectionCard:hover {

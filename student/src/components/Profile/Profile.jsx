@@ -170,9 +170,7 @@ const Profile = () => {
 
                   <Link to="/Updatepassword" className="forgot-password-btn" >Forgot Password</Link>
                 </div>
-                <div className="logout-profile-container">
-                  <button className="logout-profile-btn" >logout</button>
-                </div>
+                
               </div>
             </div>
             <div className="form-group profile-photo-container">

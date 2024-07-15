@@ -1,3 +1,4 @@
+/*
 .upperHeader {
   background: #071952;
   display: flex;
@@ -68,4 +69,34 @@
     text-align: center;
   }
 
+}
+*/
+
+
+
+.ExamPage-Headers-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 28px 70px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.ExamPage-Headers-navbar .ExamPage-Headers-logo {
+  font-size: 32px;
+  font-weight: bold;
+  color: purple;
+  margin-left: 28px;
+}
+.ExamPage-Headers-navbar .ExamPage-Headers-nav-links {
+  display: flex;
+  list-style: none;
+}
+.ExamPage-Headers-navbar .ExamPage-Headers-nav-links li {
+  margin: 0 15px;
+}
+.ExamPage-Headers-navbar .ExamPage-Headers-nav-links a {
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
 }

@@ -3,7 +3,7 @@ import "./Header.css";
 
 function Header() {
   return (
-    <>
+  /*  <>
     <header className="upperHeader">
       <div className="upperleftNav">School Portal</div>
       <div className="upperrightNav">
@@ -38,7 +38,44 @@ function Header() {
          </ul>
       </div>
     </header>
-      </>
+      </>  */
+
+    <>
+      <header className="Headers-navbar">
+          <div className="Headers-logo">
+               School Portal
+          </div>
+          <ul className="Headers-nav-links">
+            <li>
+               <a href="/">Home </a>
+            </li>
+
+
+            <li>
+               <a href="/EnrollStudent">Enroll Student</a>
+            </li>
+            <li>
+              <a href="/StudentList">Student List</a>
+            </li>
+            <li>
+              <a href="/ScheduleExam">Schedule Exam</a>
+            </li>
+
+            <li>
+              <a href="/Report">Report</a>
+            </li>
+            <li>
+              <a href="/Profile">Profile</a>
+            </li>
+          </ul>
+          <div className="Headers-nav-icons">
+
+            <div className="logout-profile-container">
+              <button className="logout-profile-btn" >logout</button>
+            </div>
+          </div>
+      </header>
+    </>
 
     
     

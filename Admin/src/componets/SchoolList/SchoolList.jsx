@@ -5,11 +5,11 @@ function SchoolList() {
   return (
     <>
       <div className="SchoolMainConteiner">
-   <SchoolListCard title="School Name" cardImagelink="https://img.freepik.com/free-vector/futuristic-science-lab-background_23-2148490234.jpg?semt=ais_user" SchoolId="12345" WebSiteLink="www.12345.com" ContactDetails="school name" userLinks="/SchoolDetails" />
+   <SchoolListCard title="School Name" cardImagelink="https://cdn-icons-png.freepik.com/256/16964/16964365.png?uid=R141820177&ga=GA1.1.982140200.1719828473&semt=ais_hybrid" SchoolId="12345" WebSiteLink="www.12345.com" ContactDetails="school name" userLinks="/SchoolDetails" />
    
-   <SchoolListCard title="School Name" cardImagelink="https://img.freepik.com/free-vector/futuristic-science-lab-background_23-2148490234.jpg?semt=ais_user" SchoolId="12345" WebSiteLink="www.12345.com" ContactDetails="school name" userLinks="/SchoolDetails" />
+   <SchoolListCard title="School Name" cardImagelink="https://cdn-icons-png.freepik.com/256/16964/16964365.png?uid=R141820177&ga=GA1.1.982140200.1719828473&semt=ais_hybrid" SchoolId="12345" WebSiteLink="www.12345.com" ContactDetails="school name" userLinks="/SchoolDetails" />
    
-   <SchoolListCard title="School Name" cardImagelink="https://img.freepik.com/free-vector/futuristic-science-lab-background_23-2148490234.jpg?semt=ais_user" SchoolId="12345" WebSiteLink="www.12345.com" ContactDetails="school name" userLinks="/SchoolDetails" />
+   <SchoolListCard title="School Name" cardImagelink="https://cdn-icons-png.freepik.com/256/16964/16964365.png?uid=R141820177&ga=GA1.1.982140200.1719828473&semt=ais_hybrid" SchoolId="12345" WebSiteLink="www.12345.com" ContactDetails="school name" userLinks="/SchoolDetails" />
    
       </div>
       </>
