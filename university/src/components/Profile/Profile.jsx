@@ -6,7 +6,7 @@ const Profile = () => {
   // Static profile data
   const staticProfile = {
     name: "John Doe",
-    enrollId: "12345",
+    Id: "12345",
     DOB: "2005-08-15",
     gender: "Male",
     email: "johndoe@example.com",
@@ -40,15 +40,15 @@ const Profile = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="enrollId" className="form-label">
-                  Enroll ID:
+                <label htmlFor="Id" className="form-label">
+                  ID:
                 </label>
                 <input
                   type="text"
-                  id="enrollId"
-                  name="enrollId"
+                  id="Id"
+                  name="Id"
                   className="form-input"
-                  value={staticProfile.enrollId}
+                  value={staticProfile.Id}
                   readOnly
                 />
               </div>
