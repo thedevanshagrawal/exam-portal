@@ -1,0 +1,93 @@
+/* Global Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.ExamScheduling-form-Main-Container{
+  margin: 12px 0;
+}
+
+.ExamScheduling-form-h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ExamScheduling-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ExamScheduling-form-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.ExamScheduling-form-input, .ExamScheduling-form-select {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.ExamScheduling-form-input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px 0 0;
+}
+
+.ExamScheduling-form-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.ExamScheduling-form-btn[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ExamScheduling-form-btn[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+/* Topic List Styles */
+
+.ExamScheduling-topic-list {
+  margin-bottom: 20px;
+}
+
+.ExamScheduling-topic-list div {
+  margin-bottom: 10px;
+}
+
+.ExamScheduling-topic-list .ExamScheduling-form-input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.ExamScheduling-topic-list span {
+  vertical-align: middle;
+}
+
+/* Error Message Styles */
+
+.ExamScheduling-error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}

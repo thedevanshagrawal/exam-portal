@@ -1,0 +1,166 @@
+.exam-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.exam-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.admin-notification {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.level-selector {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.level-button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.level-button:hover {
+  background-color: #ddd;
+}
+
+.subject-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.subject-card {
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  width: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.subject-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.subject-name {
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.subject-time,
+.subject-code {
+  margin: 5px 0;
+  color: #555;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.download-sample-paper {
+  display: block;
+  margin: 20px auto 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.download-sample-paper:hover {
+  background-color: #0056b3;
+}
+
+.start-exam-button {
+  display: block;
+  margin: 10px auto 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.start-exam-button:hover {
+  background-color: #45a049;
+}
+
+.report-container {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.report-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.report-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.report-item {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.report-subject {
+  font-weight: bold;
+}
+
+.report-mark {
+  margin-left: 10px;
+  color: #555;
+}

@@ -1,0 +1,35 @@
+.app-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.question-list-container {
+  width: 45%;
+}
+
+.create-question-button {
+
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  
+}
+
+.create-question-button:hover {
+  background-color: #0056b3;
+}
+
+.question-form-container {
+  width: 45%;
+}
+
+.create-btn-div{
+  display: flex;
+  justify-content: end;
+}

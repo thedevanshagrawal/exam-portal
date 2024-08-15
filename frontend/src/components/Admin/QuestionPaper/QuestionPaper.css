@@ -1,0 +1,130 @@
+/* Updated styles */
+
+.QuestionPaper-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.QuestionPaper-subject-section {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  width: 80%;
+}
+
+.QuestionPaper-question-paper-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  width: 80%;
+}
+
+.QuestionPaper-actions {
+  display: flex;
+  gap: 53px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 30px 18px;
+  background-color: #333;
+  border-radius: 5px;
+}  
+
+.QuestionPaper-add-subject,
+.QuestionPaper-delete-subject,
+.QuestionPaper-add-topic,
+.QuestionPaper-delete-topic {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.QuestionPaper-select-input-option {
+  height: 33px;
+  width: 220px;
+}
+
+.QuestionPaper-add-question-paper {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.QuestionPaper-subject-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.QuestionPaper-subject {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.QuestionPaper-topic-list {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.QuestionPaper-topic {
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.QuestionPaper-button {
+  height: 40px;
+  width: 100px;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.QuestionPaper-add-sub-btn {
+  background-color: #05bf00;
+}
+
+.QuestionPaper-delete-sub-btn {
+  background-color: #ff0000;
+}
+
+.QuestionPaper-delete-topic-btn {
+  background-color: #ff0000;
+}
+
+.QuestionPaper-submit-btn {
+  background-color: #0065bf;
+}
+
+.QuestionPaper-add-question-paper-select {
+  height: 40px;
+}
+
+.QuestionPaper-add-question-paper-option {
+  height: 25px;
+}
+
+.QuestionPaper-question-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.QuestionPaper-question-details input {
+  height: 38px;
+}
+
+.QuestionPaper-question-type {
+  display: flex;
+  gap: 85px;
+}
+
+.QuestionPaper-question-type label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

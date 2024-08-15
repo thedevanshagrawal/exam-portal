@@ -1,0 +1,179 @@
+.Profile-Full-Container {
+  width: 100%;
+  /* background-color: #F0F8FF; */
+  background: #4cabff40;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  /* background: #4cabff40; */
+   background-color: #F0F8FF;
+
+  padding: 20px 48px 20px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 62rem; /* Default width */
+  max-width: 100%;
+  margin: 36px auto;
+}
+
+.profile-container h2 {
+  text-align: center;
+  font-size: 46px;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+      margin: 30px 100px;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+}
+
+.ProfileMainContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10rem;
+}
+
+.profile-FormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 2;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  width: 290%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.photo-preview {
+  margin-left: 15rem;
+  margin-top: -60px;
+}
+
+.photo-preview-img {
+  width: 230px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+
+}
+
+
+.forgot-logout-btn-container{
+  display: flex;
+  gap: 62px;
+}
+
+.forgot-password-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.forgot-password-container a {
+  text-decoration: none;
+}
+
+
+.forgot-password-btn {
+  width: 12rem;
+  max-width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-profile-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.logout-profile-container a {
+  text-decoration: none;
+}
+
+
+/* Media queries */
+
+/* For tablets and small desktops */
+@media screen and (max-width: 1024px) {
+  .profile-container {
+    width: 36rem;
+    padding: 20px 38px 20px 20px;
+  }
+
+  .ProfileMainContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-photo-container {
+    margin-top: 20px;
+  }
+}
+
+/* For large mobile phones and tablets */
+@media screen and (max-width: 768px) {
+  .profile-container {
+    width: 28rem;
+    padding: 20px 35px 20px 20px;
+    margin: 20px auto;
+  }
+
+  .ProfileMainContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-photo-container {
+    margin-top: 20px;
+  }
+}
+
+/* For mobile phones */
+@media screen and (max-width: 480px) {
+  .profile-container {
+    width: 20rem;
+    padding: 10px 38px 10px 10px;
+    margin: 10px auto;
+  }
+
+  .profile-container h2 {
+    font-size: 24px;
+  }
+
+  .ProfileMainContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-photo-container {
+    margin-top: 20px;
+  }
+}

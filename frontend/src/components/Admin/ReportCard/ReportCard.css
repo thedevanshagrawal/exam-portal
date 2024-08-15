@@ -1,0 +1,15 @@
+.ReportContainer{
+  display: flex;
+}
+
+.ReportMainContainer{
+  background-color: #8080807d;
+  height: 100vh;
+}
+
+@media screen and (max-width: 800px){
+  .ReportContainer{
+    flex-direction: column;
+    align-items: center;
+  }
+}
