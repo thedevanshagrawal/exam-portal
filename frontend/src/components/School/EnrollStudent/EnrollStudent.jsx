@@ -12,31 +12,35 @@ function EnrollStudent() {
   const [gender, setGender] = useState("");
   const [user_id, setUser_id] = useState("");
   const [address, setAddress] = useState("");
+  const [avatar, setAvatar] = useState(null); // Set to null initially for the file
   const [password, setPassword] = useState("12345");
   const [selectDashboard, setSelectDashboard] = useState("student");
 
-  const handleEnrollStuent = async (event) => {
+  const handleEnrollStudent = async (event) => {
     event.preventDefault(); // Prevent default form submission
+
+    // Create a new FormData object
+    const formData = new FormData();
+    formData.append("fullName", fullName);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("StudentClass", StudentClass);
+    formData.append("fathers_name", fathers_name);
+    formData.append("dob", dob);
+    formData.append("gender", gender);
+    formData.append("contact_no", contact_no);
+    formData.append("user_id", user_id);
+    formData.append("address", address);
+    formData.append("selectDashboard", selectDashboard);
+    if (avatar) {
+      formData.append("avatar", avatar); // Append the file to FormData
+    }
 
     const response = await fetch("/users/registerStudent", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fullName,
-        email,
-        password,
-        StudentClass,
-        fathers_name,
-        gender,
-        dob,
-        contact_no,
-        user_id,
-        address,
-        selectDashboard,
-      }),
+      body: formData, // Send FormData, no need for Content-Type header
     });
+
     if (response.ok) {
       const data = await response.json();
       alert("Student Registered Successfully");
@@ -54,7 +58,8 @@ function EnrollStudent() {
         <h1 className="EnrollStudent-form-title">Student Enrollment Form</h1>
         <form
           className="EnrollStudent-enrollment-form"
-          onSubmit={handleEnrollStuent}
+          encType="multipart/form-data"
+          onSubmit={handleEnrollStudent}
         >
           <div className="EnrollStudent-form-group">
             <label htmlFor="name" className="EnrollStudent-form-label">
@@ -186,28 +191,18 @@ function EnrollStudent() {
             />
           </div>
 
-          {/* <div className="EnrollStudent-form-group">
-            <label htmlFor="profilePhoto" className="EnrollStudent-form-label">
+          <div className="EnrollStudent-form-group">
+            <label htmlFor="avatar" className="EnrollStudent-form-label">
               Upload Photo:
             </label>
             <input
               type="file"
-              id="profilePhoto"
-              name="profilePhoto"
+              id="avatar"
+              name="avatar"
               className="EnrollStudent-form-input"
-              accept="image/*"
-              onChange={handlePhotoUpload}
+              onChange={(e) => setAvatar(e.target.files[0])} // Capture the file
             />
-            {profilePhoto && (
-              <div className="EnrollStudent-photo-preview">
-                <img
-                  src={profilePhoto}
-                  alt="Profile Preview"
-                  className="EnrollStudent-photo-preview-img"
-                />
-              </div>
-            )}
-          </div> */}
+          </div>
 
           <div className="EnrollStudent-form-button-container">
             <button type="submit" className="EnrollStudent-form-button">

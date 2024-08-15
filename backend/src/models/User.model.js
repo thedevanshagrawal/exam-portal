@@ -86,6 +86,9 @@ const userSchema = new Schema(
         principal_email: {
             type: String,
         },
+        avatar: {
+            type: String
+        }
     },
     {
         timestamps: true,

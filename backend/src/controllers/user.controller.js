@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/User.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { uploadOnCloudinary } from "../utils/Cloudinary.js"
 import { response } from "express";
 import jwt from "jsonwebtoken";
 import { SchoolDetails } from "../models/SchoolDetails.model.js";
@@ -133,6 +134,12 @@ const registerStudent = asyncHandler(async (req, res) => {
         throw new ApiError(409, "User with email or user_id already exist");
     }
 
+    const avatarLocalPath = req.files?.avatar[0]?.path;
+    console.log("avatarLocalPath: ", avatarLocalPath);
+
+    const avatar = await uploadOnCloudinary(avatarLocalPath)
+    console.log("avatar: ", avatar);
+
     const user = await User.create({
 
         fullName,
@@ -145,7 +152,8 @@ const registerStudent = asyncHandler(async (req, res) => {
         contact_no,
         user_id,
         address,
-        selectDashboard
+        selectDashboard,
+        avatar: avatar.url
     });
 
     const createdUser = await User.findById(user._id).select(

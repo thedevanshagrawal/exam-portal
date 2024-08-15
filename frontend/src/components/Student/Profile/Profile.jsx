@@ -198,7 +198,7 @@ const Profile = () => {
               <label htmlFor="profilePhoto" className="form-label"></label>
               <div className="photo-preview">
                 <img
-                  src={profileData.profilePhoto}
+                  src={profileData.avatar}
                   alt="Profile"
                   className="photo-preview-img"
                 />
