@@ -106,11 +106,20 @@ router.route("/createQuestionPaper").post(
         }
     ]), verifyJWT, createQuestionPaper
 )
+router.route("/viewSubjectAndTopic").post(upload.fields([
+    {
+        name: "avatar",
+        maxCount: 1
+    },
+    {
+        name: "coverImage",
+        maxCount: 1
+    }
+]), verifyJWT, viewSubjectAndTopic)
 
 // secured routes
 router.route("/logout").post(verifyJWT, logoutUser)
 router.route("/studentProfile").get(verifyJWT, studentProfile)
-router.route("/viewSubjectAndTopic").get(verifyJWT, viewSubjectAndTopic)
 router.route("/schoolProfileInAdminProfile").get(verifyJWT, schoolProfileInAdminProfile)
 // router.route("/refresh-token").post(refreshAccessToken)
 // router.route("/change-password").post(verifyJWT, changeCurrentPassword)

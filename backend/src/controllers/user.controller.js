@@ -449,19 +449,52 @@ const createSubjectBank = asyncHandler(async (req, res) => {
 
 })
 
+// const viewSubjectAndTopic = asyncHandler(async (req, res) => {
+//     try {
+//         const SubjectAndTopic = await questionBank.find({ subject: subject }, 'topic')
+
+//         res
+//             .status(200)
+//             .json(
+//                 new ApiResponse(200, SubjectAndTopic, "Subject and Topic Fetched Successfully")
+//             )
+//     } catch (error) {
+//         throw new ApiError(error, "error in data fetching")
+//     }
+
+// })
+
+
 const viewSubjectAndTopic = asyncHandler(async (req, res) => {
     try {
-        const SubjectAndTopic = await questionBank.find()
+        const { subject } = req.body; // Assuming subject is passed as a query parameter
+        console.log("subject: ", subject);
+
+        // Check if subject is provided
+        if (!subject) {
+            throw new ApiError(400, "Subject parameter is required");
+        }
+
+        // Find documents matching the subject and return only the topic field
+        const SubjectAndTopic = await questionBank.find({ subject }, 'topic');
+
+        // Check if any topics were found for the given subject
+        if (SubjectAndTopic.length === 0) {
+            return res
+                .status(404)
+                .json(new ApiResponse(404, [], `No topics found for subject: ${subject}`));
+        }
+
+        // Respond with the found topics
         res
             .status(200)
             .json(
                 new ApiResponse(200, SubjectAndTopic, "Subject and Topic Fetched Successfully")
-            )
+            );
     } catch (error) {
-        throw new ApiError(error, "error in data fetching")
+        throw new ApiError(500, `Error in data fetching: ${error.message}`);
     }
-
-})
+});
 
 const createquestionBank = asyncHandler(async (req, res) => {
     const { subject, question, answer, option1, option2, option3, option4, topic, difficulty_level } = req.body
