@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 const app = express()
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN || 'https://exam-portal-ektp.onrender.com',
     credential: true
 }))
 
