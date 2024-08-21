@@ -105,8 +105,11 @@ const AdminProfile = () => {
 
               <div className="forgot-logout-btn-container">
                 <div className="forgot-password-container">
-                  <Link to="/Updatepassword" className="forgot-password-btn">
-                    Forgot Password
+                  <Link
+                    to="/admin/Updatepassword"
+                    className="forgot-password-btn"
+                  >
+                    Update Password
                   </Link>
                 </div>
               </div>

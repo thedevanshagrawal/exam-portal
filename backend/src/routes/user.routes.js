@@ -1,6 +1,5 @@
 import { Router } from "express";
-// import { loginUser, logoutUser, registerUser, refreshAccessToken, changeCurrentPassword, getCurrentUser, updateAccountDetails } from "../controllers/user.controller.js";
-import { loginUser, logoutUser, createSubjectBank, viewSubjectAndTopic, createquestionBank, registerAdmin, registerSchool, registerStudent, createQuestionPaper, studentProfile, schoolProfileInAdminProfile } from "../controllers/user.controller.js";
+import { loginUser, logoutUser, viewSubjectAndTopic, createquestionBank, registerAdmin, registerSchool, registerStudent, scheduleQuestionPaper, studentProfile, schoolProfileInAdminProfile, updatePassword, createNewSubjectAndTopic } from "../controllers/user.controller.js";
 import { upload } from "../middleware/multer.middleware.js";
 import { verifyJWT } from "../middleware/auth.middleware.js";
 
@@ -64,7 +63,7 @@ router.route("/registerSchool").post(
     registerSchool
 )
 
-router.route("/createsubjectbank").post(
+router.route("/createnewsubjectandtopic").post(
     upload.fields([
         {
             name: "avatar",
@@ -75,7 +74,7 @@ router.route("/createsubjectbank").post(
             maxCount: 1
         }
     ]),
-    verifyJWT, createSubjectBank
+    verifyJWT, createNewSubjectAndTopic
 )
 
 
@@ -94,7 +93,7 @@ router.route("/createquestionBank").post(
 )
 
 
-router.route("/createQuestionPaper").post(
+router.route("/scheduleQuestionPaper").post(
     upload.fields([
         {
             name: "avatar",
@@ -104,7 +103,7 @@ router.route("/createQuestionPaper").post(
             name: "coverImage",
             maxCount: 1
         }
-    ]), verifyJWT, createQuestionPaper
+    ]), verifyJWT, scheduleQuestionPaper
 )
 router.route("/viewSubjectAndTopic").post(upload.fields([
     {
@@ -116,6 +115,17 @@ router.route("/viewSubjectAndTopic").post(upload.fields([
         maxCount: 1
     }
 ]), verifyJWT, viewSubjectAndTopic)
+
+router.route("/updatePassword").post(upload.fields([
+    {
+        name: "avatar",
+        maxCount: 1
+    },
+    {
+        name: "coverImage",
+        maxCount: 1
+    }
+]), verifyJWT, updatePassword)
 
 // secured routes
 router.route("/logout").post(verifyJWT, logoutUser)

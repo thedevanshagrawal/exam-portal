@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./Updatepassword.css";
+import "./AdminPasswordUpdate.css";
 import Header from "../Header/Header";
 
-const Updatepassword = () => {
+const AdminPasswordUpdate = () => {
   const [password, setPassword] = useState("");
 
   const handleUpdatePassword = async (event) => {
@@ -63,4 +63,4 @@ const Updatepassword = () => {
   );
 };
 
-export default Updatepassword;
+export default AdminPasswordUpdate;

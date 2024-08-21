@@ -5,8 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server: {
     proxy: {
-      // '/users': 'http://localhost:3000/api/v1',
-      '/users': 'https://exam-portal-backend-wvpw.onrender.com/api/v1'
+      '/users': 'http://localhost:3000/api/v1',
+      // '/users': 'https://exam-portal-backend-wvpw.onrender.com/api/v1'
     }
   },
   plugins: [react()],

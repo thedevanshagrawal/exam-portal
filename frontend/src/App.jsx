@@ -26,6 +26,8 @@ import StudentList from "./components/School/StudentList/StudentList";
 import ExamSchedulingPortal from "./components/School/ExamScheduler/ExamScheduler";
 import StudentReportLists from "./components/School/StudentReport/StudentReport";
 import SchoolProfile from "./components/School/Profile/Profile";
+import AdminPasswordUpdate from "./components/Admin/AdminPasswordUpdate/AdminPasswordUpdate";
+import SchoolPasswordUpdate from "./components/School/SchoolPasswordUpdate/SchoolPasswordUpdate";
 
 function App() {
   return (
@@ -88,6 +90,10 @@ function App() {
             path="/admin/AdminProfile"
             element={<ProtectedRoute element={<AdminProfile />} />}
           />
+          <Route
+            path="/admin/Updatepassword"
+            element={<ProtectedRoute element={<AdminPasswordUpdate />} />}
+          />
 
           {/* School Route */}
           <Route
@@ -113,6 +119,10 @@ function App() {
           <Route
             path="/school/SchoolProfile"
             element={<ProtectedRoute element={<SchoolProfile />} />}
+          />
+          <Route
+            path="/school/Updatepassword"
+            element={<ProtectedRoute element={<SchoolPasswordUpdate />} />}
           />
         </Routes>
         <Footer />

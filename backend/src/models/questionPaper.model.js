@@ -2,11 +2,8 @@ import mongoose, { Schema } from "mongoose";
 
 const questionPaperSchema = new Schema(
   {
-    question_id: {
-      type: [String],
-    },
-    school_id: {
-      type: String,
+    questionsData: {
+      type: Array,
     },
     test_name: {
       type: String,

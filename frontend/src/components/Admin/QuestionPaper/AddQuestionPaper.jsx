@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddQuestionPaper.css";
-import axios from "axios";
 
-function AddQuestionPaper({ subjects, topics }) {
-  const [subjectTopicDatas, setSubjectTopicDatas] = useState([]);
+const AddQuestionPaper = () => {
+  const [studentClass, setStudentClass] = useState("");
   const [subject, setSubject] = useState("");
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState([]);
+  const [selectedTopic, setSelectedTopic] = useState("");
   const [question, setQuestion] = useState("");
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
@@ -13,17 +13,26 @@ function AddQuestionPaper({ subjects, topics }) {
   const [option4, setOption4] = useState("");
   const [answer, setAnswer] = useState("");
   const [difficulty_level, setDifficulty_level] = useState("");
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const handleAddQuestionPaper = async (event) => {
+  useEffect(() => {
+    if (subject) {
+      fetchTopic(subject);
+    } else {
+      setTopic([]);
+    }
+  }, [subject]);
+
+  const AddQuestionPaper = async (event) => {
     event.preventDefault();
+
     const response = await fetch("/users/createquestionBank", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        studentClass,
         subject,
         question,
         answer,
@@ -37,108 +46,94 @@ function AddQuestionPaper({ subjects, topics }) {
     });
     if (response.ok) {
       const data = await response.json();
-      alert("Question added successfully");
+      alert("Question paper created successfully");
       localStorage.setItem("authToken", data.token);
-    } else {
-      const errorText = await response.text();
-      alert(errorText);
     }
   };
 
-  useEffect(() => {
-    const viewSubjectAndTopic = async () => {
-      try {
-        const response = await fetch("/users/viewSubjectAndTopic", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+  const fetchTopic = async (subject) => {
+    try {
+      const response = await fetch("/users/viewSubjectAndTopic", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ subject: subject }),
+      });
 
-        if (response.ok) {
-          const chapterDatas = await response.json();
-          // console.log("profile", chapterDatas);
-
-          setSubjectTopicDatas(chapterDatas.data);
-          localStorage.setItem("authToken", chapterDatas.token);
-        } else {
-          const errorText = await response.text();
-          alert(errorText);
-        }
-      } catch (error) {
-        setError("Failed to fetch profile data");
-      } finally {
-        setLoading(false);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    };
 
-    viewSubjectAndTopic();
-  }, []);
+      const data = await response.json();
+      if (data.status === 404) {
+        setError(data.message);
+        setTopic([]);
+      } else {
+        setTopic(data.data);
+        setError(null);
+      }
+    } catch (error) {
+      console.error("Error fetching topic:", error.message);
+      setError("Error fetching data");
+      setTopic([]);
+    }
+  };
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/users/viewSubjectAndTopic")
-  //     .then((response) => {
-  //       console.log("Response data", response.data); // Check if this is an array
-  //       setSubjectTopicDatas(response.data); // Set the data only if it's an array
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, []);
+  const handleSubjectChange = (event) => {
+    const selectedSubject = event.target.value;
+    setSubject(selectedSubject);
+    setSelectedTopic(""); // Reset the topic selection when subject changes
+  };
 
-  // console.log("subjectTopicDatas: ", subjectTopicDatas);
-
-  if (loading) {
-    return <div>Loading...</div>; //Display loading state
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>; //Display error message
-  }
-
-  if (!subjectTopicDatas) {
-    return <div>No profile data found</div>; // Handle case with no data
-  }
+  const handleTopicChange = (event) => {
+    setSelectedTopic(event.target.value);
+  };
 
   return (
-    <form onSubmit={handleAddQuestionPaper}>
-      <div className="question-paper-add-question-paper">
-        <select
-          className="question-paper-add-question-paper-select"
-          onChange={(e) => setSubject(e.target.value)}
-        >
-          <option className="question-paper-add-question-paper-option" value="">
-            Select Subject
-          </option>
-          {subjectTopicDatas.map((sub) => (
-            <option
-              className="question-paper-add-question-paper-option"
-              key={sub._id}
-              value={sub.subject}
-            >
-              {sub.subject}
-            </option>
-          ))}
-        </select>
-        <select
-          className="question-paper-add-question-paper-select"
-          onChange={(e) => setTopic(e.target.value)}
-        >
-          <option className="question-paper-add-question-paper-option" value="">
-            Select Topic
-          </option>
-          {subjectTopicDatas.map((top) => (
-            <option
-              className="question-paper-add-question-paper-option"
-              key={top._id}
-              value={top.topic}
-            >
-              {subject ? top.topic : ""}
-            </option>
-          ))}
-        </select>
+    <div>
+      <form onSubmit={AddQuestionPaper}>
+        <div className="question-paper-add-question-paper">
+          <label>Select Subject:</label>
+          <select
+            className="addquestionpaper"
+            value={subject}
+            onChange={handleSubjectChange}
+          >
+            <option value="">Select a subject</option>
+            <option value="maths">Maths</option>
+            <option value="physics">Physics</option>
+            <option value="chemistry">Chemistry</option>
+            {/* Add more subjects as needed */}
+          </select>
+        </div>
+
+        <div className="question-paper-add-question-paper">
+          <label>Select Topic:</label>
+          <select
+            className="addquestionpaper"
+            value={selectedTopic}
+            onChange={handleTopicChange}
+            disabled={!subject || topic.length === 0}
+          >
+            <option value="">Select a topic</option>
+            {topic.map((topic, index) => (
+              <option key={index} value={topic.topic}>
+                {topic.topic}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div className="question-paper-question-details">
+          <input
+            className="question-paper-question-details-question-option-answer"
+            type="text"
+            name="studentclass"
+            onChange={(e) => setStudentClass(e.target.value)}
+            placeholder="class"
+          />
+
           <input
             className="question-paper-question-details-question-option-answer"
             type="text"
@@ -183,13 +178,15 @@ function AddQuestionPaper({ subjects, topics }) {
             onChange={(e) => setAnswer(e.target.value)}
             placeholder="Answer"
           />
-          <input
-            className="question-paper-question-details-question-option-answer"
-            type="text"
-            name="difficulty_level"
+          <select
+            className="addquestionpaper"
             onChange={(e) => setDifficulty_level(e.target.value)}
-            placeholder="Difficulty level"
-          />
+            value={difficulty_level}
+          >
+            <option value="easy">easy</option>
+            <option value="medium">medium</option>
+            <option value="hard">hard</option>
+          </select>
         </div>
         <div className="question-paper-buttons">
           <button
@@ -202,9 +199,9 @@ function AddQuestionPaper({ subjects, topics }) {
             View
           </button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
-}
+};
 
 export default AddQuestionPaper;

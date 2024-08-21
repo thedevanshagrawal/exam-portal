@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 import { SchoolDetails } from "../models/SchoolDetails.model.js";
 import { questionBank } from "../models/questionBank.model.js";
 import { questionPaper } from "../models/questionPaper.model.js";
+import bcrypt from "bcrypt";
 
 
 const generateAccessAndRefreshTokens = async (userId) => {
@@ -135,10 +136,8 @@ const registerStudent = asyncHandler(async (req, res) => {
     }
 
     const avatarLocalPath = req.files?.avatar[0]?.path;
-    console.log("avatarLocalPath: ", avatarLocalPath);
 
     const avatar = await uploadOnCloudinary(avatarLocalPath)
-    console.log("avatar: ", avatar);
 
     const user = await User.create({
 
@@ -186,7 +185,7 @@ const registerSchool = asyncHandler(async (req, res) => {
     // return response
 
     const {
-        schoolName, email, contact_no, user_id, address, spoc_name, spoc_password, spoc_email, principal_name, principal_id, principal_email, principal_password, selectDashboard
+        schoolName, email, contact_no, user_id, address, spoc_name, spoc_password, spoc_email, principal_name, principal_id, principal_email, principal_password, selectDashboard, password
     } = req.body;
 
     if (
@@ -210,7 +209,7 @@ const registerSchool = asyncHandler(async (req, res) => {
     }
 
     const school = await User.create({
-        schoolName, email, contact_no, user_id, address, spoc_name, spoc_password, spoc_email, principal_name, principal_id, principal_email, principal_password, selectDashboard
+        schoolName, email, contact_no, user_id, address, spoc_name, spoc_password, spoc_email, principal_name, principal_id, principal_email, principal_password, selectDashboard, password
     });
 
     const createdSchool = await User.findById(school._id).select(
@@ -231,87 +230,6 @@ const registerSchool = asyncHandler(async (req, res) => {
         );
 });
 
-//     const { email, selectDashboard, password } = req.body;
-
-//     // Log incoming request data for debugging
-//     console.log("Request Data:", req.body);
-
-//     // Validate request data
-//     if (!email || !selectDashboard || !password) {
-//         return res.status(400).json({ message: "All fields are required" });
-//     }
-
-//     // Find the user by email
-//     const user = await User.findOne({
-//         $or: [{ email }],
-//     });
-
-
-
-//     if (!user) {
-//         return res.status(404).json({ message: "User does not exist" });
-//     }
-
-//     // Check if the password is correct (without bcrypt)
-//     const isPasswordValid = await user.isPasswordCorrect(password);
-
-//     if (!isPasswordValid) {
-//         throw new ApiError(401, "Invalid user credentials");
-//     }
-
-//     // Check if the selected dashboard matches the user's role
-//     if (user.selectDashboard !== selectDashboard) {
-//         return res.status(400).json({ message: "No dashboard available for this Dashboard" });
-//     }
-
-//     // Generate access and refresh tokens
-//     const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(user._id);
-
-//     const options = {
-//         httpOnly: true,
-//         secure: true,
-//     };
-
-//     // Log successful login for debugging
-//     console.log("User Dashboard:", user.selectDashboard);
-//     console.log("Selected Dashboard:", selectDashboard);
-
-//     return res
-//         .status(200)
-//         .cookie("accessToken", accessToken, options)
-//         .cookie("refreshToken", refreshToken, options)
-//         .json({
-//             selectDashboard: user.selectDashboard, // Send back the correct role
-//             token: accessToken, // This is what your frontend expects
-//             message: "User logged in successfully"
-//         });
-// });
-
-
-// const logoutUser = asyncHandler(async (req, res) => {
-//     await User.findByIdAndUpdate(
-//         req.user._id,
-//         {
-//             $set: {
-//                 refreshToken: undefined,
-//             },
-//         },
-//         {
-//             new: true,
-//         }
-//     );
-
-//     const options = {
-//         httpOnly: true,
-//         secure: true,
-//     };
-
-//     return res
-//         .status(200)
-//         .clearCookie("accessToken", options)
-//         .clearCookie("refreshToken", options)
-//         .json(new ApiResponse(200, {}, "User logged Out"));
-// });
 
 const loginUser = asyncHandler(async (req, res) => {
     const { email, selectDashboard, password } = req.body;
@@ -322,7 +240,13 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 
     // Find the user by email
-    const user = await User.findOne({ email });
+    const user = await User.findOne({
+        $or: [
+            { email: email },
+            { spoc_email: email },
+            { principal_email: email }
+        ]
+    });
 
     if (!user) {
         return res.status(404).json({ message: "User does not exist" });
@@ -353,6 +277,7 @@ const loginUser = asyncHandler(async (req, res) => {
         .cookie("accessToken", accessToken, options)
         .cookie("refreshToken", refreshToken, options)
         .json({
+            email: user.email,
             selectDashboard: user.selectDashboard, // Send back the correct role
             token: accessToken, // This is what your frontend expects
             message: "User logged in successfully"
@@ -378,7 +303,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 });
 
 
-const studentProfile = async (req, res, next) => {
+const studentProfile = asyncHandler(async (req, res, next) => {
     try {
         const user = req.user; // This is set by the verifyJWT middleware
         if (!user) {
@@ -392,7 +317,7 @@ const studentProfile = async (req, res, next) => {
     } catch (error) {
         next(new ApiError(500, "Server Error"));
     }
-};
+});
 
 const schoolProfileInAdminProfile = asyncHandler(async (req, res) => {
     const { school_id, email } = req.query
@@ -421,62 +346,28 @@ const schoolProfileInAdminProfile = asyncHandler(async (req, res) => {
 
 })
 
-const createSubjectBank = asyncHandler(async (req, res) => {
-    const { subject, topic } = req.body
+const createNewSubjectAndTopic = asyncHandler(async (req, res) => {
+    const { subject, topic } = req.body;
 
-    if (!(subject || topic)) {
-        throw new ApiError(400, "Subject or topic is required")
+    if (!subject || !topic) {
+        throw new ApiError(400, "Subject and topic is required")
     }
 
-    // const existedQuestion = await find({
-    //     $or: [{ question }]
-    // })
-
-    // if (existedQuestion) {
-    //     throw new ApiError(409, "Question is existed")
-    // }
-
-    const Subject = await questionBank.create({
+    const SubjectAndTopic = await questionBank.create({
         subject,
-        topic,
+        topic
     })
 
-    const createdSubject = await questionBank.findById(Subject._id).select(
-        "-refreshToken"
-    )
-
-    if (!createdSubject) {
-        throw new ApiError(500, "Something went wrong while creating Subject")
-    }
-
     return res
-        .status(201)
-        .json(
-            new ApiResponse(200, createdSubject, "Subject created successfully")
-        )
+        .status(200)
+        .json(new ApiResponse(201, SubjectAndTopic, "Subject and topic is created"))
 
 })
-
-// const viewSubjectAndTopic = asyncHandler(async (req, res) => {
-//     try {
-//         const SubjectAndTopic = await questionBank.find({ subject: subject }, 'topic')
-
-//         res
-//             .status(200)
-//             .json(
-//                 new ApiResponse(200, SubjectAndTopic, "Subject and Topic Fetched Successfully")
-//             )
-//     } catch (error) {
-//         throw new ApiError(error, "error in data fetching")
-//     }
-
-// })
 
 
 const viewSubjectAndTopic = asyncHandler(async (req, res) => {
     try {
-        const { subject } = req.body; // Assuming subject is passed as a query parameter
-        console.log("subject: ", subject);
+        const { subject } = req.body;
 
         // Check if subject is provided
         if (!subject) {
@@ -505,7 +396,7 @@ const viewSubjectAndTopic = asyncHandler(async (req, res) => {
 });
 
 const createquestionBank = asyncHandler(async (req, res) => {
-    const { subject, question, answer, option1, option2, option3, option4, topic, difficulty_level } = req.body
+    const { StudentClass, subject, question, answer, option1, option2, option3, option4, topic, difficulty_level } = req.body
 
     if (!(subject || topic || question)) {
         throw new ApiError(400, "Subject or topic or question is required")
@@ -520,6 +411,7 @@ const createquestionBank = asyncHandler(async (req, res) => {
     // }
 
     const Question = await questionBank.create({
+        StudentClass,
         subject,
         question,
         answer,
@@ -547,14 +439,14 @@ const createquestionBank = asyncHandler(async (req, res) => {
 
 })
 
-const createQuestionPaper = asyncHandler(async (req, res) => {
-    const { question_id, school_id, test_name, duration, total_marks, School_class, difficulty_level } = req.body;
+const scheduleQuestionPaper = asyncHandler(async (req, res) => {
+    const { StudentClass, subject, topic, duration, total_marks, difficulty_level } = req.body;
 
     // First, aggregate the data from questionBank based on your criteria
     const aggregatedData = await questionBank.aggregate([
         {
             $match: {
-                difficulty_level: difficulty_level // Adjust this to your specific criteria
+                subject: subject
             }
         },
         // Project stage to include necessary fields
@@ -574,9 +466,7 @@ const createQuestionPaper = asyncHandler(async (req, res) => {
     ]);
 
     // Prepare the array of question IDs and the full questions data
-    const questionIds = aggregatedData.map(question => question._id.toString());
     const questionsData = aggregatedData.map(question => ({
-        id: question._id.toString(),
         subject: question.subject,
         question: question.question,
         answer: question.answer,
@@ -590,12 +480,10 @@ const createQuestionPaper = asyncHandler(async (req, res) => {
 
     // Now, create the question paper with the aggregated question IDs and data
     const QuestionPaper = await questionPaper.create({
-        question_id: questionIds,
-        school_id,
-        test_name,
+        questionsData,
+        StudentClass,
         duration,
         total_marks,
-        School_class,
         difficulty_level,
         questionsData
     });
@@ -615,6 +503,41 @@ const createQuestionPaper = asyncHandler(async (req, res) => {
     );
 });
 
+const updatePassword = asyncHandler(async (req, res) => {
+    try {
+        const user = req.user;
+        if (!user) {
+            throw new ApiError(404, "User not found");
+        }
+
+        const { password } = req.body;
+
+
+        const hashedPassword = await bcrypt.hash(password, 10)
+
+        const updateUserpassword = await User.findByIdAndUpdate(
+            user._id,
+            { $set: { password: hashedPassword } },
+            { new: true }
+        );
+
+
+
+        if (!updateUserpassword) {
+            throw new ApiError(404, "User not found");
+        }
+
+        return res.
+            status(200)
+            .json(
+                new ApiResponse(200, updateUserpassword, "Password is updated")
+            );
+
+    } catch (error) {
+        throw new ApiError(500, "Something went wrong")
+    }
+});
+
 
 export {
     registerAdmin,
@@ -622,14 +545,13 @@ export {
     loginUser,
     logoutUser,
     registerSchool,
-    createSubjectBank,
     viewSubjectAndTopic,
     createquestionBank,
-    createQuestionPaper,
+    scheduleQuestionPaper,
     studentProfile,
     schoolProfileInAdminProfile,
+    updatePassword,
+    createNewSubjectAndTopic
     // refreshAccessToken,
     // changeCurrentPassword,
-    // getCurrentUser,
-    // updateAccountDetails
 };
