@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { loginUser, logoutUser, viewSubjectAndTopic, createquestionBank, registerAdmin, registerSchool, registerStudent, scheduleQuestionPaper, studentProfile, schoolProfileInAdminProfile, updatePassword, createNewSubjectAndTopic } from "../controllers/user.controller.js";
+import { loginUser, logoutUser, viewSubjectAndTopic, createquestionBank, registerAdmin, registerSchool, registerStudent, scheduleQuestionPaper, studentProfile, schoolProfileInAdminProfile, updatePassword, createNewSubjectAndTopic, getQuestionPaper } from "../controllers/user.controller.js";
 import { upload } from "../middleware/multer.middleware.js";
 import { verifyJWT } from "../middleware/auth.middleware.js";
 
@@ -126,6 +126,17 @@ router.route("/updatePassword").post(upload.fields([
         maxCount: 1
     }
 ]), verifyJWT, updatePassword)
+
+router.route("/getQuestionPaper").post(upload.fields([
+    {
+        name: "avatar",
+        maxCount: 1
+    },
+    {
+        name: "coverImage",
+        maxCount: 1
+    }
+]), verifyJWT, getQuestionPaper)
 
 // secured routes
 router.route("/logout").post(verifyJWT, logoutUser)

@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 import { SchoolDetails } from "../models/SchoolDetails.model.js";
 import { questionBank } from "../models/questionBank.model.js";
 import { questionPaper } from "../models/questionPaper.model.js";
+import { SubjectAndTopic } from "../models/SubjectAndTopic.model.js";
 import bcrypt from "bcrypt";
 
 
@@ -353,14 +354,14 @@ const createNewSubjectAndTopic = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Subject and topic is required")
     }
 
-    const SubjectAndTopic = await questionBank.create({
+    const subjectAndTopic = await SubjectAndTopic.create({
         subject,
         topic
     })
 
     return res
         .status(200)
-        .json(new ApiResponse(201, SubjectAndTopic, "Subject and topic is created"))
+        .json(new ApiResponse(201, subjectAndTopic, "Subject and topic is created"))
 
 })
 
@@ -375,10 +376,10 @@ const viewSubjectAndTopic = asyncHandler(async (req, res) => {
         }
 
         // Find documents matching the subject and return only the topic field
-        const SubjectAndTopic = await questionBank.find({ subject }, 'topic');
+        const subjectAndTopic = await SubjectAndTopic.find({ subject }, 'topic');
 
         // Check if any topics were found for the given subject
-        if (SubjectAndTopic.length === 0) {
+        if (subjectAndTopic.length === 0) {
             return res
                 .status(404)
                 .json(new ApiResponse(404, [], `No topics found for subject: ${subject}`));
@@ -388,7 +389,7 @@ const viewSubjectAndTopic = asyncHandler(async (req, res) => {
         res
             .status(200)
             .json(
-                new ApiResponse(200, SubjectAndTopic, "Subject and Topic Fetched Successfully")
+                new ApiResponse(200, subjectAndTopic, "Subject and Topic Fetched Successfully")
             );
     } catch (error) {
         throw new ApiError(500, `Error in data fetching: ${error.message}`);
@@ -402,24 +403,38 @@ const createquestionBank = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Subject or topic or question is required")
     }
 
-    // const existedQuestion = await find({
-    //     $or: [{ question }]
-    // })
+    const aggregatedData = await SubjectAndTopic.aggregate([
+        {
+            $match: {
+                subject: subject,
+                topic: topic
+            }
+        },
+        // Project stage to include necessary fields
+        {
+            $project: {
+                subject: 1,
+                topic: 1,
+            }
+        }
+    ]);
 
-    // if (existedQuestion) {
-    //     throw new ApiError(409, "Question is existed")
-    // }
+    // Prepare the array of question IDs and the full questions data
+    const questionsData = aggregatedData.map(question => ({
+        subject: question.subject,
+        topic: question.topic,
+    }));
+
 
     const Question = await questionBank.create({
         StudentClass,
-        subject,
+        questionsData,
         question,
         answer,
         option1,
         option2,
         option3,
         option4,
-        topic,
         difficulty_level
     })
 
@@ -444,26 +459,41 @@ const scheduleQuestionPaper = asyncHandler(async (req, res) => {
 
     // First, aggregate the data from questionBank based on your criteria
     const aggregatedData = await questionBank.aggregate([
+        // Match documents that contain the subject in the questionsData array
         {
             $match: {
-                subject: subject
+                "questionsData.subject": subject,
             }
         },
-        // Project stage to include necessary fields
+        // Unwind the questionsData array to deal with each question individually
+        {
+            $unwind: "$questionsData"
+        },
+        // // Match again to ensure only the relevant subject is processed
+        // {
+        //     $match: {
+        //         "questionsData.subject": subject,
+        //     }
+        // },
+        // Project the necessary fields
         {
             $project: {
-                subject: 1,
+                _id: 0,  // Exclude the _id field if not needed
+                subject: "$questionsData.subject",
+                topic: "$questionsData.topic",
                 question: 1,
                 answer: 1,
                 option1: 1,
                 option2: 1,
                 option3: 1,
                 option4: 1,
-                topic: 1,
-                difficulty_level: 1
+                difficulty_level: 1,
             }
         }
     ]);
+
+
+
 
     // Prepare the array of question IDs and the full questions data
     const questionsData = aggregatedData.map(question => ({
@@ -498,10 +528,27 @@ const scheduleQuestionPaper = asyncHandler(async (req, res) => {
         throw new ApiError(500, "Something went wrong while scheduling paper");
     }
 
+
+
     return res.status(201).json(
-        new ApiResponse(200, scheduledQuestionPaper, "Scheduled paper successfully")
+        new ApiResponse(200, "Scheduled paper successfully")
     );
 });
+
+const getQuestionPaper = asyncHandler(async (req, res) => {
+    const { subject } = req.body
+    const getquestionPaper = await questionPaper.find({
+        "questionsData.subject": subject
+    })
+
+
+    return res.
+        status(200)
+        .json({
+            success: true,
+            getquestionPaper
+        })
+})
 
 const updatePassword = asyncHandler(async (req, res) => {
     try {
@@ -551,7 +598,8 @@ export {
     studentProfile,
     schoolProfileInAdminProfile,
     updatePassword,
-    createNewSubjectAndTopic
+    createNewSubjectAndTopic,
+    getQuestionPaper
     // refreshAccessToken,
     // changeCurrentPassword,
 };

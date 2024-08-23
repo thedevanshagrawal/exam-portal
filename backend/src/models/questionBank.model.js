@@ -2,6 +2,9 @@ import mongoose, { Schema } from "mongoose";
 
 const questionBankSchema = new Schema(
   {
+    questionsData: {
+      type: Array,
+    },
     subject: {
       type: String,
     },
