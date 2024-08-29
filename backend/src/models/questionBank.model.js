@@ -31,6 +31,7 @@ const questionBankSchema = new Schema(
     },
     difficulty_level: {
       type: String,
+      lowercase: true,
       enum: ['easy', 'medium', 'hard']
     }
   },

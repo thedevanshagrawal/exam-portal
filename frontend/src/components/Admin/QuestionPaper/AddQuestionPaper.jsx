@@ -12,7 +12,7 @@ const AddQuestionPaper = () => {
   const [option3, setOption3] = useState("");
   const [option4, setOption4] = useState("");
   const [answer, setAnswer] = useState("");
-  const [difficulty_level, setDifficulty_level] = useState("");
+  const [difficulty_level, setDifficulty_level] = useState("easy");
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -22,34 +22,6 @@ const AddQuestionPaper = () => {
       setTopic([]);
     }
   }, [subject]);
-
-  const AddQuestionPaper = async (event) => {
-    event.preventDefault();
-
-    const response = await fetch("/users/createquestionBank", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        studentClass,
-        subject,
-        question,
-        answer,
-        option1,
-        option2,
-        option3,
-        option4,
-        topic,
-        difficulty_level,
-      }),
-    });
-    if (response.ok) {
-      const data = await response.json();
-      alert("Question paper created successfully");
-      localStorage.setItem("authToken", data.token);
-    }
-  };
 
   const fetchTopic = async (subject) => {
     try {
@@ -70,7 +42,10 @@ const AddQuestionPaper = () => {
         setError(data.message);
         setTopic([]);
       } else {
-        setTopic(data.data);
+        // Assuming data.data is an array of objects with _id and topic fields
+        setTopic(
+          data.data.map((topic) => ({ _id: topic._id, topic: topic.topic }))
+        );
         setError(null);
       }
     } catch (error) {
@@ -87,7 +62,38 @@ const AddQuestionPaper = () => {
   };
 
   const handleTopicChange = (event) => {
-    setSelectedTopic(event.target.value);
+    setSelectedTopic(event.target.value); // Set the selected topic's _id
+  };
+
+  const AddQuestionPaper = async (event) => {
+    event.preventDefault();
+
+    const selectedTopicData = topic.find((t) => t._id === selectedTopic);
+
+    const response = await fetch("/users/createquestionBank", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        studentClass,
+        subject,
+        question,
+        answer,
+        option1,
+        option2,
+        option3,
+        option4,
+        topic: selectedTopicData ? selectedTopicData.topic : "",
+        difficulty_level,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      alert("Question paper created successfully");
+      localStorage.setItem("authToken", data.token);
+    }
   };
 
   return (
@@ -117,8 +123,8 @@ const AddQuestionPaper = () => {
             disabled={!subject || topic.length === 0}
           >
             <option value="">Select a topic</option>
-            {topic.map((topic, index) => (
-              <option key={index} value={topic.topic}>
+            {topic.map((topic) => (
+              <option key={topic._id} value={topic._id}>
                 {topic.topic}
               </option>
             ))}

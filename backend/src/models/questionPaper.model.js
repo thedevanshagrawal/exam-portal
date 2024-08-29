@@ -8,7 +8,10 @@ const questionPaperSchema = new Schema(
     test_name: {
       type: String,
     },
-    duration: {
+    examTime: {
+      type: String,
+    },
+    examDate: {
       type: String,
     },
     total_marks: {
@@ -19,6 +22,8 @@ const questionPaperSchema = new Schema(
     },
     difficulty_level: {
       type: String,
+      lowercase: true,
+      enum: ['easy', 'medium', 'hard']
     }
   },
   {

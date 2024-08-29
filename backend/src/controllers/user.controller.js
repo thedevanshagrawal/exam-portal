@@ -399,9 +399,13 @@ const viewSubjectAndTopic = asyncHandler(async (req, res) => {
 const createquestionBank = asyncHandler(async (req, res) => {
     const { StudentClass, subject, question, answer, option1, option2, option3, option4, topic, difficulty_level } = req.body
 
+
+
     if (!(subject || topic || question)) {
         throw new ApiError(400, "Subject or topic or question is required")
     }
+
+
 
     const aggregatedData = await SubjectAndTopic.aggregate([
         {
@@ -419,12 +423,13 @@ const createquestionBank = asyncHandler(async (req, res) => {
         }
     ]);
 
+
+
     // Prepare the array of question IDs and the full questions data
     const questionsData = aggregatedData.map(question => ({
         subject: question.subject,
         topic: question.topic,
     }));
-
 
     const Question = await questionBank.create({
         StudentClass,
@@ -437,6 +442,7 @@ const createquestionBank = asyncHandler(async (req, res) => {
         option4,
         difficulty_level
     })
+    console.log("Question: ", Question)
 
     const createdQuestion = await questionBank.findById(Question._id).select(
         "-refreshToken"
@@ -455,7 +461,7 @@ const createquestionBank = asyncHandler(async (req, res) => {
 })
 
 const scheduleQuestionPaper = asyncHandler(async (req, res) => {
-    const { StudentClass, subject, topic, duration, total_marks, difficulty_level } = req.body;
+    const { StudentClass, subject, topic, examTime, examDate, total_marks, difficulty_level } = req.body;
 
     // First, aggregate the data from questionBank based on your criteria
     const aggregatedData = await questionBank.aggregate([
@@ -463,6 +469,7 @@ const scheduleQuestionPaper = asyncHandler(async (req, res) => {
         {
             $match: {
                 "questionsData.subject": subject,
+                "questionsData.topic": topic,
             }
         },
         // Unwind the questionsData array to deal with each question individually
@@ -512,7 +519,8 @@ const scheduleQuestionPaper = asyncHandler(async (req, res) => {
     const QuestionPaper = await questionPaper.create({
         questionsData,
         StudentClass,
-        duration,
+        examTime,
+        examDate,
         total_marks,
         difficulty_level,
         questionsData
@@ -537,9 +545,18 @@ const scheduleQuestionPaper = asyncHandler(async (req, res) => {
 
 const getQuestionPaper = asyncHandler(async (req, res) => {
     const { subject } = req.body
+
+    if (!subject) {
+        throw new ApiError(404, "subject is required");
+    }
+
     const getquestionPaper = await questionPaper.find({
         "questionsData.subject": subject
     })
+
+    if (!getquestionPaper) {
+        throw new ApiError(404, "question not found");
+    }
 
 
     return res.
